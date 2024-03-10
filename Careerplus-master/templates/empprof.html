@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/employeeprof.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body>
+  <div class="wrapper">
+	<div class="logo"><img src="static/img/logo.png"></img></div>
+    <div class="container main">
+        <div class="row">
+            <!--<div class="col-md-6 left">
+                       
+                ------------      image     -------------
+                <span>Welcome to <span>Carrier+</span></span>
+				<span style="display:flex">Select type employee or employer</span>
+            </div>-->
+
+                      
+                <div class="input-box">
+                   <div class="head">
+                   <header style="font-size: 30px;">Login</header>
+                   </div>
+                   <!-- Form with post action -->
+                   <form method="post" action="{{url_for('loginuser')}}">
+                    <div class="input-field">
+                        <input type="text" class="input" id="name" name="fullname" placeholder="Yourname Surname" required="" autocomplete="off">
+                        <label for="name">Full Name</label>
+                    </div>
+                    <div class="input-field">
+                        <select name="gender" class="input">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <label for="gender">Gender</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="date" class="input" id="dob" name="dob" placeholder="DOB" required="">
+                        <label for="dob">Date of Birth</label>
+                    </div>
+                    <div class="input-field">
+                        <select name="education" class="input">
+                            <option value="Course">Course</option>
+                            <option value="hsc">HSC</option>
+                            <option value="diploma">DIPLOMA</option>
+                            <option value="B.Tech">B.Tech</option>
+                            <option value="BCA">BCA</option>
+                            <option value="MCA">MCA</option>
+                            <option value="M.Tech">M.Tech</option>
+                        </select>
+                        <label for="education">Education</label>
+                    </div>
+                    <div class="input-field">
+                        <select name="skills" class="input">
+                            <option value="c">C</option>
+                            <option value="c++">C++</option>
+                            <option value="c#">C#</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="sql">SQL</option>
+                            <option value="html,css">HTML, CSS</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <label for="skills">Skills</label>
+                    </div>
+                    <div class="input-field" id="otherSkillsBox" style="display: none;">
+                        <input type="text" class="input" id="otherSkills" name="otherSkills" placeholder="Specify Other Skills">
+                        <label for="otherSkills">Other Skills</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" class="input" id="address" name="address" placeholder="Your Address" required="">
+                        <label for="address">Address</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" class="input" id="post" name="post" placeholder="Designation" required="">
+                        <label for="post">Position you are applying for</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="submit" class="submit" value="Submit">
+                   </div> 
+                   </form>
+                   <!-- End of Form -->
+                   <!-- login.html -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" style="color:red">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+                   
+                   
+        
+                </div>  
+            
+            
+        </div>
+    </div>
+</div>
+<script>
+    //for dom mapulation 
+ document.querySelectorAll('.radio-button').forEach((radio) => {
+     radio.addEventListener('change', function() {
+         if (this.checked && this.id === 'employee') {
+             Functionchange1();
+         } else if (this.checked && this.id === 'employer') {
+             // Do something else when employer is selected
+             Functionchange2();
+         }
+     });
+ });
+ 
+ function Functionchange1() {
+     // Your function code here
+     console.log("Start function triggered! employee ");
+     document.querySelector('.left span:nth-child(2)').innerHTML = "Login in as a <b> <h4>Employee<h4><b>";
+ }
+ 
+ function Functionchange2() {
+     // Your function code here
+     console.log("Start function triggered! employee ");
+     document.querySelector('.left span:nth-child(2)').innerHTML = "Signing up as a <b> <h4>Employer<h4><b>";
+ }
+
+//  window.onload = function() {
+//     var errorMessage = "{{ get_flashed_messages(with_categories=true) | first }}";  // Get the flash message from Flask
+//     if (errorMessage) {
+//         alert("password and email doesnot match");  // Show the error message in a popup
+        
+//         // Hide the alert message after 5 seconds (5000 milliseconds)
+//         setTimeout(function() {
+//             document.querySelector('.alert').style.display = 'none';
+//         }, 5000);
+//     }
+// };
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('skills').addEventListener('change', function () {
+        var otherSkillsBox = document.getElementById('otherSkillsBox');
+        var otherSkillsInput = document.getElementById('otherSkills');
+
+        if (this.value === 'other') {
+            otherSkillsBox.style.display = 'block';
+            otherSkillsInput.setAttribute('required', '');
+        } else {
+            otherSkillsBox.style.display = 'none';
+            otherSkillsInput.removeAttribute('required');
+        }
+    });
+});
+
+
+
+
+ 
+ 
+     </script>
+</body>
+</html>

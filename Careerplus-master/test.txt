@@ -1,0 +1,3 @@
+@app.route('/employeeprof/<us>')
+def employeeprof(us):
+    return render_template('employeeprof.html',us=us)
